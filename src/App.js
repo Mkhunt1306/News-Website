@@ -4,21 +4,26 @@ import Navbar from "./Navbar";
 import Alert from "./Alert";
 import Home from "./Home";
 import News from "./News";
-import Guj from "./Guj";
-
-import { BrowserRouter as Router, Routes, Route,Navigate} from "react-router-dom";
 import India from "./India";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 
 function App(props) {
-  const [alert, setalert] = useState(null);
-
+  const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+  const pageSize = 24;
+  
+  const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
-    setalert({
+    setAlert({
       message: message,
       type: type,
     });
-
-    setTimeout(() => setalert(null), 1500);
+    setTimeout(() => setAlert(null), 1500);
   };
 
   const [myStyle, setStyle] = useState({
@@ -46,34 +51,135 @@ function App(props) {
     }
   };
 
+  const [progress, setProgress] = useState(0);
+
+  const updateProgress = (value) => {
+    setProgress(value);
+  };
 
   return (
-    <>
-      <Router>
-  <Navbar title = "ઝટપટ સમાચાર" showAlert={showAlert} togglebtn={togglebtn} text={text} />
-  <Alert alert={alert} />
-    
-  <Routes>
-     <Route exact path="/" element={<Navigate to="/home" replace />} />
-    <Route exact path="/home" element={<Home myStyle={myStyle}/>} />
-   
-    {/* <Route exact path="/form" element={<Form myStyle={myStyle} showAlert={showAlert} />} /> */}
-     
-     <Route exact path="/india" element={<India pageSize="10"/>} /> 
-     <Route exact path="/guj" element={<Guj pageSize="10"/>} /> 
-     <Route exact path="/news" element={<News pageSize="24" country="us"/>} /> 
-     <Route exact path="/business" element={ <News key = "business" pageSize="24" country="us" category ='business'/>} /> 
-      <Route exact path="/entertainment" element={ <News key = "entertainment" pageSize="24" country="us" category ='entertainment'/>} /> 
-     <Route exact path="/general" element={ <News key = "general" pageSize="24" country="us" category ='general'/>} /> 
-     <Route exact path="/health" element={ <News key = "health" pageSize="24" country="us" category ='health'/>} /> 
-     <Route exact path="/science" element={ <News key = "science" pageSize="24" country="us" category ='science'/>} /> 
-     <Route exact path="/sports" element={ <News key = "sports" pageSize="24" country="us" category ='sports'/>} /> 
-     <Route exact path="/technology" element={ <News key = "technology" pageSize="24" country="us" category ='technology'/>} /> 
-   
-  </Routes>
-</Router>
+    <Router>
+      <Navbar title="ઝટપટ સમાચાર" togglebtn={togglebtn} text={text} />
+      <LoadingBar height={3} color="#f11946" progress={progress} />
+      <Alert alert={alert} />
 
-    </>
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/home" element={<Home myStyle={myStyle} />} />
+        <Route
+          path="/india"
+          element={
+            <India
+              pageSize="10"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/news"
+          element={
+            <News
+              pageSize={pageSize}
+              country="us"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/business"
+          element={
+            <News
+              key="business"
+              pageSize={pageSize}
+              country="us"
+              category="business"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/entertainment"
+          element={
+            <News
+              key="entertainment"
+              pageSize={pageSize}
+              country="us"
+              category="entertainment"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/general"
+          element={
+            <News
+              key="general"
+              pageSize={pageSize}
+              country="us"
+              category="general"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/health"
+          element={
+            <News
+              key="health"
+              pageSize={pageSize}
+              country="us"
+              category="health"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/science"
+          element={
+            <News
+              key="science"
+              pageSize={pageSize}
+              country="us"
+              category="science"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/sports"
+          element={
+            <News
+              key="sports"
+              pageSize={pageSize}
+              country="us"
+              category="sports"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+        <Route
+          path="/technology"
+          element={
+            <News
+              key="technology"
+              pageSize={pageSize}
+              country="us"
+              category="technology"
+              apiKey={apiKey}
+              updateProgress={updateProgress}
+            />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

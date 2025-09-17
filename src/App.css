@@ -1,13 +1,10 @@
-.img{
+.img {
   width: 100%;
   height: auto;
   display: block;
-   
 }
-.navbar{
-  background-color: black;
-}
-.badge{
-  left:90%;
+
+/* .badge {
+  left: 90%;
   z-index: 1;
-}
+} */

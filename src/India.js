@@ -7,36 +7,45 @@ import Spinner from './Spinner';
   
 export class India extends Component {
   
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     console.log("Working");
     this.state={
       articles: [], 
       loading :false,
       page : 1
     }
+    
   }
   async componentDidMount() {
-    let url =`https://newsapi.org/v2/everything?q=india&apiKey=6c5fc8678ebc459a97ed10ab59fa9bd3&page=1&pageSize=${this.props.pageSize}`;
+    this.props.updateProgress(10);
+    let url =`https://newsapi.org/v2/everything?q=india&apiKey=${this.props.apiKey}&page=1&pageSize=${this.props.pageSize}`;
      this.setState({loading:true});
     let data = await fetch(url);
+    this.props.updateProgress(60);
     let parseData = await data.json();
+     this.props.updateProgress(80);
     this.setState({articles: parseData.articles, 
       totalResults:parseData.totalResults,
       loading :false
     })
+    this.props.updateProgress(100);
   }
 
    handlepreclick = async()=>{
-      let url =`https://newsapi.org/v2/everything?q=india&apiKey=6c5fc8678ebc459a97ed10ab59fa9bd3&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+    this.props.updateProgress(10);
+      let url =`https://newsapi.org/v2/everything?q=india&apiKey=${this.props.apiKey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
     let data = await fetch(url);
+    this.props.updateProgress(60);
     let parseData = await data.json();
+     this.props.updateProgress(80);
     this.setState({
       page: this.state.page - 1,
       articles: parseData.articles,
        loading :false
     })
+    this.props.updateProgress(100);
   }
   
 
@@ -46,16 +55,21 @@ export class India extends Component {
 
     }
     else{
-       let url =`https://newsapi.org/v2/everything?q=india&apiKey=6c5fc8678ebc459a97ed10ab59fa9bd3&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+      this.props.updateProgress(10);
+       let url =`https://newsapi.org/v2/everything?q=india&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    
+
        this.setState({loading:true});
     let data = await fetch(url);
+    this.props.updateProgress(60);
     let parseData = await data.json();
+    this.props.updateProgress(80);
     this.setState({
       page: this.state.page + 1,
       articles: parseData.articles,
       loading :false
     })
-    
+    this.props.updateProgress(100);
   }
   }
 

@@ -8,9 +8,10 @@ export class Newsitem extends Component {
     let {title,description,imageurl,newsurl,author,date,source} = this.props;
     return (
       <>
-            <div className="card px-0 mb-4"  style={{height: 'auto'}}>
-            <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">{source}</span>
-
+            <div className="card px-0 mb-4"  style={{height: 'auto'}}>  
+              <div class="d-flex justify-content-end end-0 position-absolute">
+            <span className="badge rounded-pill bg-danger">{source}</span>
+            </div>
                 <img src={imageurl && imageurl.trim() !== "" ? imageurl : "/img8.jpg"} className="card-img-top" alt="..." style={{height: '230px'}}/>
 
                 <div className="card-body">
