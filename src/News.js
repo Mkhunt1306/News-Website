@@ -4,8 +4,6 @@ import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import InfiniteScroll from "react-infinite-scroll-component";
 
-
-
   
 export class News extends Component {
   static defaultProps ={
@@ -82,7 +80,7 @@ export class News extends Component {
     return (
         <>
       
-            <h2 className='fw-bold text-center my-5 '>ઝટપટ સમાચાર - Top Headlines</h2>
+            <h2 className='fw-bold text-center mb-4' style={{marginTop: "90px"}}>ઝટપટ સમાચાર - Top Headlines</h2>
             {this.state.loading && <Spinner/>}
             <InfiniteScroll
                 dataLength={this.state.articles ? this.state.articles.length : 0}

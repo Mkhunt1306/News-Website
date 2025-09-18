@@ -3,8 +3,6 @@ import Newsitem from "./Newsitem";
 import Spinner from './Spinner';
 
 
-
-  
 export class India extends Component {
   
   constructor(props){

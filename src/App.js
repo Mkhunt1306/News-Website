@@ -16,7 +16,7 @@ import LoadingBar from "react-top-loading-bar";
 function App(props) {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
   const pageSize = 24;
-  
+
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
     setAlert({
@@ -66,27 +66,9 @@ function App(props) {
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Home myStyle={myStyle} />} />
+        <Route path="/india" element={ <India pageSize="10" apiKey={apiKey} updateProgress={updateProgress}/>}/>
         <Route
-          path="/india"
-          element={
-            <India
-              pageSize="10"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
-        <Route
-          path="/news"
-          element={
-            <News
-              pageSize={pageSize}
-              country="us"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
+          path="/news" element={ <News pageSize={pageSize}  country="us" apiKey={apiKey} updateProgress={updateProgress}/>}/>
         <Route
           path="/business"
           element={
@@ -94,12 +76,7 @@ function App(props) {
               key="business"
               pageSize={pageSize}
               country="us"
-              category="business"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
+              category="business" apiKey={apiKey} updateProgress={updateProgress}/>}/>
         <Route
           path="/entertainment"
           element={
@@ -120,12 +97,7 @@ function App(props) {
               key="general"
               pageSize={pageSize}
               country="us"
-              category="general"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
+              category="general" apiKey={apiKey} updateProgress={updateProgress}/>}/>
         <Route
           path="/health"
           element={
@@ -133,12 +105,7 @@ function App(props) {
               key="health"
               pageSize={pageSize}
               country="us"
-              category="health"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
+              category="health" apiKey={apiKey} updateProgress={updateProgress}/>}/>
         <Route
           path="/science"
           element={
@@ -159,12 +126,7 @@ function App(props) {
               key="sports"
               pageSize={pageSize}
               country="us"
-              category="sports"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
+              category="sports" apiKey={apiKey} updateProgress={updateProgress}/>}/>
         <Route
           path="/technology"
           element={
@@ -172,12 +134,7 @@ function App(props) {
               key="technology"
               pageSize={pageSize}
               country="us"
-              category="technology"
-              apiKey={apiKey}
-              updateProgress={updateProgress}
-            />
-          }
-        />
+              category="technology" apiKey={apiKey} updateProgress={updateProgress}/>}/>
       </Routes>
     </Router>
   );
